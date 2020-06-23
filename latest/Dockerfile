@@ -16,10 +16,9 @@ RUN apt-get update && \
     tar -xf stack.tar.gz -C /usr/local/bin --strip-components=1 && \
     rm -rf "$GNUPGHOME" /var/lib/apt/lists/* /stack.tar.gz.asc /stack.tar.gz
 
-RUN stack --resolver lts-12.26 setup
-
-# run ghc once to prefetch commonly used dependencies
-RUN stack ghc --package QuickCheck --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml -- --version
+# setup stack and run ghc once to prefetch commonly used dependencies
+RUN stack --resolver lts-12.26 setup && \
+    stack ghc --package QuickCheck --package quickcheck-assertions --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml -- --version
 
 ## run ghci by default unless a command is specified
 CMD ["stack", "ghci"]
