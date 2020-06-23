@@ -18,7 +18,8 @@ RUN apt-get update && \
 
 RUN stack --resolver lts-12.26 setup
 
-RUN stack ghc -- --version
+# run ghc once to prefetch commonly used dependencies
+RUN stack ghc --package QuickCheck --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml -- --version
 
 ## run ghci by default unless a command is specified
 CMD ["stack", "ghci"]
