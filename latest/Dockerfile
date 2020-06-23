@@ -20,5 +20,7 @@ RUN apt-get update && \
 RUN stack --resolver lts-12.26 setup && \
     stack ghc --package QuickCheck --package quickcheck-assertions --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml -- --version
 
+ENV PATH /root/.cabal/bin:/root/.local/bin:$PATH
+
 ## run ghci by default unless a command is specified
 CMD ["stack", "ghci"]
