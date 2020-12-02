@@ -16,9 +16,12 @@ RUN apt-get update && \
     tar -xf stack.tar.gz -C /usr/local/bin --strip-components=1 && \
     rm -rf "$GNUPGHOME" /var/lib/apt/lists/* /stack.tar.gz.asc /stack.tar.gz
 
+# Place configuration files
+COPY stack/config.yaml /root/.stack/config.yaml
+COPY stack/global-project/stack.yaml /root/.stack/global-project/stack.yaml
+
 # setup stack and run ghc once to prefetch commonly used dependencies
-RUN stack --resolver lts-16.19 setup && \
-    stack ghc --package QuickCheck --package quickcheck-assertions --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml -- --version
+RUN stack ghc --package QuickCheck --package quickcheck-assertions --package smallcheck --package tasty --package tasty-quickcheck --package tasty-smallcheck --package tasty-hunit --package tasty-ant-xml --package unordered-containers --package haskell-src-exts --package cyp -- --version
 
 ENV PATH /root/.cabal/bin:/root/.local/bin:$PATH
 
