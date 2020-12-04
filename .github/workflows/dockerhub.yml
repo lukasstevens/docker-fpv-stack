@@ -28,7 +28,6 @@ jobs:
           push: true
           tags: |
             "tumfpv/fpv-stack:8.8.4"
-            "tumfpv/fpv-stack:8.8.4-cyp"
       - name: "Build and push 2020ex05"
         uses: docker/build-push-action@v2
         with:
