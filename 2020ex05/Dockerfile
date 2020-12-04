@@ -1,5 +1,5 @@
 ## Dockerfile for a haskell environment
-FROM       fpv-stack:8.8.4
+FROM       tumfpv/fpv-stack:8.8.4
 
 ## ensure locale is set during build
 ENV LANG            C.UTF-8
