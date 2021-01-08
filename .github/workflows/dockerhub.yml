@@ -27,13 +27,13 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: "tumfpv/fpv-stack:8.8.4"
-      - name: "Build and push 2020ex05"
+      - name: "Build and push 2020ex09"
         uses: docker/build-push-action@v2
         with:
-          context: "./2020ex05"
-          file: "./2020ex05/Dockerfile"
+          context: "./2020ex09"
+          file: "./2020ex09/Dockerfile"
           platforms: linux/amd64
           push: true
-          tags: "tumfpv/fpv-stack:2020ex05"
+          tags: "tumfpv/fpv-stack:2020ex09"
 
 
